@@ -1,0 +1,21 @@
+ <div id="LINK" class="project aqua">
+    <div class="media">
+	<iframe width="640" height="360" src="//VIDEO" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="info">
+	<div class="title">
+TITLE
+	</div>
+	<div class="description">
+DESCRIPTION
+	    Not huge description here
+	</div>
+    </div>
+    <div class="link">
+	<div class="ribbon">
+	    <a href="//LINK" target="_blank">
+www.LINK
+	    </a>
+	</div>
+    </div>
+</div>

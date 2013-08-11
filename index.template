@@ -261,26 +261,7 @@
         </div>
     </header>
     <div id="center">
-         <div id="projectName" class="project aqua">
-            <div class="media">
-                <iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/YOUR_HASH?rel=0" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="info">
-                <div class="title">
-                    Project title
-                </div>
-                <div class="description">
-                    Project description
-                </div>
-            </div>
-            <div class="link">
-                <div class="ribbon">
-                    <a href="//dimhold.by" target="_blank">
-                        www.dimhold.by
-                    </a>
-                </div>
-            </div>
-        </div>
+PROJECTS
     </div>
 </body>
 </html>
