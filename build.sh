@@ -7,27 +7,45 @@ clean () {
 	fi
 }
 
+sync_files_datetime () {
+	cd "projects"
+	for file in *
+	do
+		date=$(cat "$file" | grep "[0-9]*-[0-9]*-[0-9]*" | sed "s/-//g")
+		date="$date""0000"
+		touch "$file" -t "$date"
+	done
+	cd ..
+}
+
 build_projects_to_html () {
 	local template=$(cat project.template)
 	local project=""
-	local index=0
 	local html=""
 
 	cd "projects"
 
-	for file in *
+	for file in $(ls --sort=time)
 	do
+		local lines=()
+		local index=0
+		local description=""
 		while read line
 		do
 			lines[$index]="$line"
 			index=$(($index+1))
+
+			if [ 3 -lt $index ]
+			then
+				description="$description$line<br/>"
+			fi
+
 		done < "$file"
 
-		title=${lines[0]}; unset lines[0]
-		video=${lines[1]}; unset lines[1]
-		description=${lines[@]}
+		title=${lines[0]}
+		video=${lines[1]}
 		link="$file"
-
+		
 		project="$template"
 		project="${project//TITLE/$title}"
 		project="${project//VIDEO/$video}"
@@ -51,6 +69,7 @@ build_index_html () {
 
 main () {
 	clean
+	sync_files_datetime
 	build_projects_to_html
 	build_index_html
 	clean
