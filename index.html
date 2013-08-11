@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=320, initial-scale=0.5">
+    
+    <title>Cool projects</title>
+
+    <style type="text/css">
+        header {
+            background-color: #414042;
+            color: white;
+            height: 50px;
+        }
+        #logo {
+            position: relative;
+            top: -13px;
+            left: -15px;
+            width: 150px;
+            height: 16px;
+            margin-right: 75px;
+            margin-left: 30px;
+            cursor: pointer;
+        }
+        .logo-cool {
+            text-shadow: 0 0 1px #FFFFFF;
+            position: relative;
+            z-index: 100;
+            float: left;
+            margin-right: 3px;
+            color: transparent;
+            font-weight: bold;
+            font-size: 2.2em;
+            transform: rotate(-14deg);
+            -webkit-transform: rotate(-14deg);
+            color: #8FFCAA;
+            text-decoration:none;
+        }
+        .logo-projects {
+            color: transparent;
+            font-size: 1.3em;
+            text-shadow: 0 0 2px #AFAFAF;
+            position: absolute;
+            z-index: 10;
+            position: absolute;
+            left: 34px;
+            top: 26px;
+            transform: rotate(-14deg);
+            -webkit-transform: rotate(-14deg);
+            text-decoration:none;
+        }
+        #slogan {
+            font-weight: bold; 
+            font-size: 1.5em;
+            margin-top: 7px;
+        }
+        #header-right {
+            float: right;
+        }
+        header > div {
+            display: inline-block;
+        }
+        #github {
+            margin-right: 120px;
+            margin-top: 13px;
+        }
+        #github > a {
+            color: white;
+        }
+        #rss {
+            width: 40px;
+            height: 40px;
+            float: right;
+            margin-top: -25px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        body {
+            margin: 0px;
+            background-color: #563D7C;
+        }
+        #center {
+            position: relative;
+            left: 10%;
+            width: 80%;
+        }
+
+
+
+        .project {
+            background-color: gray;
+            width: 100%;
+            height: 360px;
+            border-radius: 30px;
+            margin-top: 50px;
+            box-shadow: 4px 8px 12px rgba(0,0,0,0.5);
+        }
+        .media {
+            width: 640px;
+            height: 360px;
+            float: left;
+        }
+        .info {
+            height: 315px;
+            width: 100%;
+        }
+        .title {
+            font-size: 4em;
+            font-weight: bold;
+            text-align: center;
+            
+        }
+        .description {
+            text-overflow: ellipsis;
+            white-space: pre-wrap;
+            margin-top: 40px;
+            margin-left: 650px;
+        }
+        .link {
+            position: relative;
+            left: 482px;
+            top: -43px;
+
+            overflow: hidden;
+            
+            height: 88px;
+            width: 210px;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+        }
+        .ribbon {
+            position: relative;
+            left: -67px;
+            top: 37px;
+
+            width: 400px;
+            transform: rotate(-25deg);
+            -webkit-transform: rotate(-25deg);
+
+            font: bold 15px Sans-Serif;
+            text-align: center;
+            padding: 7px 0;
+
+            box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+
+            background-color: #BFDC7A;
+            background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
+            background-image: -moz-linear-gradient(top, #BFDC7A, #8EBF45);
+            background-image: -ms-linear-gradient(top, #BFDC7A, #8EBF45);
+            background-image: -o-linear-gradient(top, #BFDC7A, #8EBF45);
+            color: #6a6340;
+        }
+
+
+
+        .cream {
+            background-image: -moz-linear-gradient(top, #fff8e7, #aff8e7);
+        }
+
+        .brown {
+            background-color: #8a3324;
+            background-image: -webkit-linear-gradient(top, #954535, #c04000);
+            background-image: -moz-linear-gradient(top, #8a3324, #704214);
+            background-image: -ms-linear-gradient(top, #954535, #c04000);
+            background-image: -o-linear-gradient(top, #954535, #c04000);
+        }
+        .cool {
+            background-color: #8c92ac;
+            background-image: -webkit-linear-gradient(top, #8c92ac, #708090);
+            background-image: -moz-linear-gradient(top, #8c92ac, #708090);
+            background-image: -ms-linear-gradient(top, #8c92ac, #708090);
+            background-image: -o-linear-gradient(top, #8c92ac, #708090);
+        }
+
+        .aqua {
+            background-color: #2DA3E5;
+        }
+    </style>
+
+
+    <script type="text/javascript">
+        var LAST_SEEN_KEY = "";
+        var PROJECT_HEIGHT = 420;
+        var projects = [];
+        var needScroll = true;
+
+        window.onload = function () {
+            projects = document.getElementsByClassName("project");
+            restoreLastSeenProject();
+        };
+
+        window.onscroll = function (e) {
+            needScroll = false;
+
+            var pos = document.documentElement.scrollTop || document.body.scrollTop;
+            pos = Math.floor(pos / PROJECT_HEIGHT);
+
+            if (projects.length > pos) {
+                if (pos == projects.length - 2) {
+                    pos = projects.length - 1;
+                } else if (pos < 1) {
+                    removeProject();
+                    return;
+                }
+                var projectName = projects[pos].getAttribute("id");
+                saveLastSeenProject(projectName);
+            }
+        }
+
+        function restoreLastSeenProject() {
+            var lastSeenProject = localStorage.getItem(LAST_SEEN_KEY);
+            if (lastSeenProject && lastSeenProject != "header") {
+                for (var i = 0; i < projects.length; i++) {
+                    if (projects[i].getAttribute("id") == lastSeenProject) {
+                        if (needScroll) {
+                            scrollTo(0, i * PROJECT_HEIGHT);
+                            needScroll = false;
+                        }
+                        return;
+                    }
+                }
+            }
+        }
+
+        function scrollTo (current, position) {
+            if (current < position) {
+                current+=40;
+                window.scroll(0, current);
+
+                setTimeout(function() {
+                    scrollTo(current, position);
+
+                }, 13);
+            }
+        }
+
+        function removeProject () {
+            localStorage.removeItem(LAST_SEEN_KEY);
+
+        }
+
+        function saveLastSeenProject(project) {
+            localStorage.setItem(LAST_SEEN_KEY, project);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <a class="logo-cool" href="">Cool</a>
+            <a class="logo-projects" href="">projects</a>
+        </div>
+        <div id="slogan">All cool projects in one place</div>
+        <div id="header-right">
+            <div id="github"><a href="https://github.com/dimhold/cool-projects.com" target="_blank">Add my project</a></div>
+            <div id="rss" onclick="window.location='rss.xml'">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                    <path d="M4.135,16.762c3.078,0,5.972,1.205,8.146,3.391c2.179,2.187,3.377,5.101,3.377,8.202h4.745c0-9.008-7.299-16.335-16.269-16.335V16.762zM4.141,8.354c10.973,0,19.898,8.975,19.898,20.006h4.743c0-13.646-11.054-24.749-24.642-24.749V8.354zM10.701,25.045c0,1.815-1.471,3.287-3.285,3.287s-3.285-1.472-3.285-3.287c0-1.813,1.471-3.285,3.285-3.285S10.701,23.231,10.701,25.045z" stroke="orange"/>
+                    RSS
+                </svg>
+            </div>
+        </div>
+    </header>
+    <div id="center">
+         <div id="projectName" class="project aqua">
+            <div class="media">
+                <iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/YOUR_HASH?rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="info">
+                <div class="title">
+                    Project title
+                </div>
+                <div class="description">
+                    Not huge description here
+                </div>
+            </div>
+            <div class="link">
+                <div class="ribbon">
+                    <a href="www.dimhold.by">
+                        www.dimhold.by
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
