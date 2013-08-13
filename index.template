@@ -113,8 +113,9 @@
         .description {
             text-overflow: ellipsis;
             white-space: pre-wrap;
-            margin-top: 40px;
+            margin-top: 10px;
             margin-left: 650px;
+            font-size: 1.2em;
         }
         .link {
             margin: -43px 0 0 auto;
