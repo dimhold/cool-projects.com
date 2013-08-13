@@ -117,9 +117,7 @@
             margin-left: 650px;
         }
         .link {
-            position: relative;
-            left: 494px;
-            top: -43px;
+            margin: -43px 0 0 auto;
 
             overflow: hidden;
             
@@ -175,73 +173,6 @@
             background-color: #2DA3E5;
         }
     </style>
-
-
-    <script type="text/javascript">
-        var LAST_SEEN_KEY = "";
-        var PROJECT_HEIGHT = 420;
-        var projects = [];
-        var needScroll = true;
-
-        window.onload = function () {
-            projects = document.getElementsByClassName("project");
-            restoreLastSeenProject();
-        };
-
-        window.onscroll = function (e) {
-            needScroll = false;
-
-            var pos = document.documentElement.scrollTop || document.body.scrollTop;
-            pos = Math.floor(pos / PROJECT_HEIGHT);
-
-            if (projects.length > pos) {
-                if (pos == projects.length - 2) {
-                    pos = projects.length - 1;
-                } else if (pos < 1) {
-                    removeProject();
-                    return;
-                }
-                var projectName = projects[pos].getAttribute("id");
-                saveLastSeenProject(projectName);
-            }
-        }
-
-        function restoreLastSeenProject() {
-            var lastSeenProject = localStorage.getItem(LAST_SEEN_KEY);
-            if (lastSeenProject && lastSeenProject != "header") {
-                for (var i = 0; i < projects.length; i++) {
-                    if (projects[i].getAttribute("id") == lastSeenProject) {
-                        if (needScroll) {
-                            scrollTo(0, i * PROJECT_HEIGHT);
-                            needScroll = false;
-                        }
-                        return;
-                    }
-                }
-            }
-        }
-
-        function scrollTo (current, position) {
-            if (current < position) {
-                current+=40;
-                window.scroll(0, current);
-
-                setTimeout(function() {
-                    scrollTo(current, position);
-
-                }, 13);
-            }
-        }
-
-        function removeProject () {
-            localStorage.removeItem(LAST_SEEN_KEY);
-
-        }
-
-        function saveLastSeenProject(project) {
-            localStorage.setItem(LAST_SEEN_KEY, project);
-        }
-    </script>
 </head>
 <body>
     <header>
