@@ -2,9 +2,17 @@
 	<title>TITLE</title>
 	<link>http://www.cool-projects.com</link>
 	<description>
-		VIDEO
+	<![CDATA[
+		<iframe width="640" height="360" src="//VIDEO" frameborder="0" allowfullscreen></iframe>
+		<br/>
+		<br/>
 		DESCRIPTION
-		LINK
+		<br/>
+		<br/>
+	    <a href="//LINK" target="_blank">
+www.LINK
+	    </a>
+	]]>
 	</description>
 </item>
 
