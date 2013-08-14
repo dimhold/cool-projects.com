@@ -2,9 +2,11 @@
 	<title>TITLE</title>
 	<link>http://www.cool-projects.com</link>
 	<description>
+	<![CDATA[
 		VIDEO
 		DESCRIPTION
 		LINK
+	]]>
 	</description>
 </item>
 
