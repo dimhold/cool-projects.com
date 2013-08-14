@@ -5,6 +5,10 @@ clean () {
 	then
 		rm "/tmp/projects.html"
 	fi
+	if [ -f "/tmp/projects.xml" ]
+	then
+		rm "/tmp/projects.xml"
+	fi
 }
 
 sync_files_datetime () {
@@ -20,6 +24,7 @@ sync_files_datetime () {
 
 build_projects_to_html () {
 	local template=$(cat project.template)
+	local rss=$(cat item-rss.template)
 	local project=""
 	local html=""
 
@@ -47,11 +52,22 @@ build_projects_to_html () {
 		link="$file"
 		
 		project="$template"
+		projectRss="$rss"
+
 		project="${project//TITLE/$title}"
+		projectRss="${projectRss//TITLE/$title}"
+
 		project="${project//VIDEO/$video}"
+		projectRss="${projectRss//VIDEO/$video}"
+
 		project="${project//DESCRIPTION/$description}"
+		projectRss="${projectRss//DESCRIPTION/$description}"
+
 		project="${project//LINK/$link}"
+		projectRss="${projectRss//LINK/$link}"
+
 		echo "$project" >> /tmp/projects.html 
+		echo "$projectRss" >> /tmp/projects.xml
 
 		echo -n "+" #marker for pv (progress bar)
 	done | pv -s $(ls | wc -l) > /dev/null
@@ -67,12 +83,22 @@ build_index_html () {
 	echo "$html" > index.html
 }
 
+build_rss_xml () {
+	local rss=$(cat rss.template)
+	local items=$(cat /tmp/projects.xml)
+
+	rss="${rss//PROJECTS/$items}"
+	echo "$rss" > rss.xml 
+}
+
 main () {
 	clean
 	sync_files_datetime
 	build_projects_to_html
 	build_index_html
+	build_rss_xml
 	clean
 }
 
 time main
+
