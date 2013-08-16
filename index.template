@@ -53,8 +53,8 @@
         }
         #slogan {
             font-weight: bold;
-            font-size: 1.5em;
-            margin-top: 7px;
+            font-size: 1.0em;
+            margin-top: -17px;
         }
         #header-right {
             float: right;
@@ -183,7 +183,7 @@
             <a class="logo-cool" href="//cool-projects.com">Cool</a>
             <a class="logo-projects" href="//cool-projects.com">projects</a>
         </div>
-        <div id="slogan">All cool projects in one place</div>
+        <div id="slogan"><h1>All cool projects in one place</h1></div>
         <div id="header-right">
             <div id="github"><a href="https://github.com/dimhold/cool-projects.com" target="_blank">Add my project</a></div>
             <div id="rss" onclick="window.location='rss.xml'">
